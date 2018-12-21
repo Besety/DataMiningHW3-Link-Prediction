@@ -1,0 +1,39 @@
+test.py:126: RuntimeWarning: invalid value encountered in true_divide
+  G = G/G.sum(0)
+
+Graph Dataset :graph_1.txt
+
+Adjacency Matrix :
+[[0. 1. 0. 0. 0. 0.]
+ [0. 0. 1. 0. 0. 0.]
+ [0. 0. 0. 1. 0. 0.]
+ [0. 0. 0. 0. 1. 0.]
+ [0. 0. 0. 0. 0. 1.]
+ [0. 0. 0. 0. 0. 0.]]
+
+Implement >
+     Hub Authority               PageRank                         SimRank
+0  [0.2]     [0.0]  [0.06071611200885575]  [1.0, nan, nan, nan, nan, nan]
+1  [0.2]     [0.2]  [0.11232480721638316]  [nan, 1.0, nan, nan, nan, nan]
+2  [0.2]     [0.2]  [0.15619219814278143]  [nan, nan, 1.0, nan, nan, nan]
+3  [0.2]     [0.2]  [0.19347948043021995]  [nan, nan, nan, 1.0, nan, nan]
+4  [0.2]     [0.2]  [0.22517367037454272]  [nan, nan, nan, nan, 1.0, nan]
+5  [0.0]     [0.2]    [0.252113731827217]  [nan, nan, nan, nan, nan, 1.0]
+
+HITS Algorithm Execution time :0.00013641302257605476 sec
+PageRank Algorithm Execution time :0.00034313584092919504 sec
+SimRank Algorithm Execution time :0.00044830006538210067 sec
+
+Using NetworkX >
+   Hub  Authority  PageRank
+0  0.2        0.0  0.060716
+1  0.2        0.2  0.112324
+2  0.2        0.2  0.156192
+3  0.2        0.2  0.193480
+4  0.2        0.2  0.225174
+5  0.0        0.2  0.252114
+
+HITS Algorithm Execution time :0.00014692944502134493 sec
+PageRank Algorithm Execution time :0.0005174079843082956 sec
+
+***Repl Closed***

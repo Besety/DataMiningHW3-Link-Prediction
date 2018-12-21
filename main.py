@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 np.set_printoptions(threshold=np.inf)
 
 def convertIBMdata():
-	IBM = open( 'data.ntrans_0.1.tlen_20.nitems_0.1.txt','r')
+	IBM = open( 'data.ntrans_0.1.tlen_40.nitems_0.1.txt','r')
 	f = open('graph_7.txt','w')
 	lines=IBM.readlines()
 
@@ -64,13 +64,14 @@ def nx_PageRank(G,d):
 
 def DisplayGraph(G):
 	pos = nx.spring_layout(G)
-	nx.draw(G,node_size =50,node_color='pink',style='dashed',width=1.0,edge_color='gray')
+	nx.draw(G,node_size =300,node_color='pink',style='dashed',width=2.0,edge_color='gray')
 	plt.show()
 
 def adjMetrix(edgeList):
 	m = Nodenum(edgeList)
 	matrix = np.zeros(shape=(m,m))
 	for edge in edgeList:
+
 		u = int(edge[0]) - 1
 		v = int(edge[1]) - 1
 		matrix[u][v] = 1
@@ -134,8 +135,6 @@ def PageRank(adjmatrix,d):
 	PR = PR/PR.sum()
 	return PR
 
-
-
 def SimRank(G,n,C=0.8,t=100):
 	
 	S = np.identity(n)
@@ -151,7 +150,6 @@ def SimRank(G,n,C=0.8,t=100):
 
 	return S
 	
-
 def Converge_checking(vector,vector_pre):
 	converge = False
 	tolerance = 0.000005
@@ -164,7 +162,6 @@ def Converge_checking(vector,vector_pre):
 	if changes < tolerance:
 		converge = True
 	return converge
-
 
 def DisplayResult(hub,authority,PR,SR):
 
@@ -181,14 +178,17 @@ def DisplayResult(hub,authority,PR,SR):
 	pd.set_option('display.max_columns',None)
 	pd.set_option('display.max_rows', None)
 	pd.set_option('display.max_colwidth',200)
-	#pd.set_option('precision', 4)
+	pd.set_option('precision', 4)
+	#不省略顯示
+	np.set_printoptions(threshold=np.inf)
+
 
 
 	print(Result_df[['Hub','Authority']].sort_values(by='Authority', ascending=False)[0:30])
 
 	print(Result_df[['PageRank']].sort_values(by='PageRank', ascending=False)[0:30])
 
-	#print(Result_df[['SimRank']])
+	print(Result_df[['SimRank']])
 def SortedDict(Dict):
 	Dictsorted = sorted(Dict.items())
 	sortedlist =list()
@@ -206,28 +206,26 @@ def Display_nx_Result(hub,authority,PR):
 	}
 
 	Result_df = pd.DataFrame(Result_dict)
-	'''
+	
 	#印出全部矩陣
 	pd.set_option('display.max_columns',1000)
 	pd.set_option('display.max_rows', 1000) 
 	pd.set_option('precision', 3)
-	'''
-	#Result_df.sort_values(by='Authority')
+
+	Result_df.sort_values(by='Authority')
 	print(Result_df[['Hub','Authority']].sort_values(by='Authority', ascending=False)[0:30])
 	print(Result_df[['PageRank']].sort_values(by='PageRank', ascending=False)[0:30])
 
 if __name__ == '__main__':
 
 	# read the input file
-	#'graph_6.txt'
-	inputFile = 'graph_7.txt'
+
+	inputFile = 'graph_5.txt'
 	edges = edgelist(inputFile)
-
 	m = Nodenum(edges)
-
+	
 	A = adjMetrix(edges)
 	
-
 
 	#HITS
 	ts = time.clock()
@@ -260,17 +258,19 @@ if __name__ == '__main__':
 	print('PageRank Algorithm Execution time :'+ PageRanktime+' sec')
 	print('SimRank Algorithm Execution time :'+ SimRanktime+' sec')
 
-
 	G = nx_Graph(edges)
 	#DisplayGraph(G)
+	G.add_edge(1, 3)
+	#G.add_edge(3, 0)
 
+	#DisplayGraph(G)
 	#HITS
 	nx_ts = time.clock()
 	nx_hub , nx_authority =nx_HITS(G)
 	nx_te = time.clock()
 	nx_HITStime = str(nx_te-nx_ts)
 	#print(nx_hub , nx_authority)
-
+	d= 0.15
 	#PageRank
 	nx_ts = time.clock()
 	nx_PR = nx_PageRank(G,1-d)

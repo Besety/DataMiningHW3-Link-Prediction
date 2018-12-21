@@ -1,0 +1,34 @@
+
+Graph Dataset :graph_2.txt
+
+Adjacency Matrix :
+[[0. 1. 0. 0. 0.]
+ [0. 0. 1. 0. 0.]
+ [0. 0. 0. 1. 0.]
+ [0. 0. 0. 0. 1.]
+ [1. 0. 0. 0. 0.]]
+
+Implement >
+     Hub Authority PageRank                    SimRank
+0  [0.2]     [0.2]    [0.2]  [1.0, 0.0, 0.0, 0.0, 0.0]
+1  [0.2]     [0.2]    [0.2]  [0.0, 1.0, 0.0, 0.0, 0.0]
+2  [0.2]     [0.2]    [0.2]  [0.0, 0.0, 1.0, 0.0, 0.0]
+3  [0.2]     [0.2]    [0.2]  [0.0, 0.0, 0.0, 1.0, 0.0]
+4  [0.2]     [0.2]    [0.2]  [0.0, 0.0, 0.0, 0.0, 1.0]
+
+HITS Algorithm Execution time :0.0001379153686396677 sec
+PageRank Algorithm Execution time :7.601871081881466e-05 sec
+SimRank Algorithm Execution time :0.000373783700626899 sec
+
+Using NetworkX >
+   Hub  Authority  PageRank
+0  0.2        0.2       0.2
+1  0.2        0.2       0.2
+2  0.2        0.2       0.2
+3  0.2        0.2       0.2
+4  0.2        0.2       0.2
+
+HITS Algorithm Execution time :0.00013731443021422225 sec
+PageRank Algorithm Execution time :0.0003034739048498134 sec
+
+***Repl Closed***
